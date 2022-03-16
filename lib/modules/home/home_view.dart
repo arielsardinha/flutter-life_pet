@@ -115,6 +115,12 @@ class HomeView extends StatelessWidget {
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: const Text("Cadastrar"),
+        icon: const Icon(Icons.pets),
+        backgroundColor: Colors.redAccent,
+      ),
     );
   }
 }
