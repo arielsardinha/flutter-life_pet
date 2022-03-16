@@ -7,9 +7,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          GestureDetector(
+      body: ListView.builder(
+        itemCount: pets.length,
+        itemBuilder: (ctx, index) {
+          return GestureDetector(
             onTap: () {},
             child: Padding(
               padding: const EdgeInsets.only(bottom: 30),
@@ -17,7 +18,7 @@ class HomeView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Hero(
-                    tag: pets[0].id!,
+                    tag: pets[index].id!,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 250,
@@ -26,7 +27,7 @@ class HomeView extends StatelessWidget {
                           Radius.circular(20),
                         ),
                         image: DecorationImage(
-                            image: AssetImage(pets[0].imageUrl),
+                            image: AssetImage(pets[index].imageUrl),
                             fit: BoxFit.cover),
                       ),
                     ),
@@ -37,7 +38,7 @@ class HomeView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          pets[0].nome,
+                          pets[index].nome,
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 24,
@@ -47,7 +48,7 @@ class HomeView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
-                            pets[0].descricao,
+                            pets[index].descricao,
                             style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 16,
@@ -60,60 +61,8 @@ class HomeView extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Hero(
-                    tag: pets[1].id!,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                        image: DecorationImage(
-                            image: AssetImage(pets[1].imageUrl),
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          pets[1].nome,
-                          style: const TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            pets[1].descricao,
-                            style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontSize: 16,
-                                color: Colors.grey),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},

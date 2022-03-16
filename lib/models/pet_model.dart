@@ -36,4 +36,14 @@ var pets = <Pet>[
     sexo: "Macho",
     id: 2,
   ),
+  Pet(
+    nome: "Paulinho",
+    descricao: "Pincher elétrico",
+    cor: "Preto",
+    bio: "Sou um pincher elétrico",
+    imageUrl: "assets/images/arnaldo.png",
+    idade: 1,
+    sexo: "Macho",
+    id: 3,
+  ),
 ];
