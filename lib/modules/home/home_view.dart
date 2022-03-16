@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_pet/models/pet_model.dart';
+import 'package:life_pet/modules/pets/cadastr_pet_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -65,7 +66,9 @@ class HomeView extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('/cadastroPet');
+        },
         label: const Text("Cadastrar"),
         icon: const Icon(Icons.pets),
         backgroundColor: Colors.redAccent,
