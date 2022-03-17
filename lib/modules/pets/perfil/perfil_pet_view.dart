@@ -53,7 +53,7 @@ class PerfilPetView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Text(
-                      pet.bio,
+                      pet.descricao,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.grey,
@@ -62,10 +62,70 @@ class PerfilPetView extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: 100,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  cardItens(label: 'Idade', value: pet.idade.toString()),
+                  cardItens(label: 'Sexo', value: pet.sexo),
+                  cardItens(label: 'Cor', value: pet.cor),
+                  cardItens(label: 'id', value: pet.id.toString()),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+              child: Text(
+                pet.bio,
+                style: const TextStyle(
+                    fontFamily: 'Montserrat', fontSize: 16, height: 1.5),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 4,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+Widget cardItens({required String label, required String value}) {
+  return Row(
+    children: [
+      Container(
+        width: 100,
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.redAccent,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(
+            label,
+            style: const TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+        ]),
+      ),
+    ],
+  );
 }
