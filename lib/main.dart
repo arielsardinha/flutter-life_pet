@@ -15,7 +15,7 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/home',
       routes: {
-        '/home': (context) => const HomeView(),
+        '/home': (context) => HomeView(),
         '/cadastroPet': (context) => const CadastroPetView(),
       },
     );

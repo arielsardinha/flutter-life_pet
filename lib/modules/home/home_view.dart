@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:life_pet/models/pet_model.dart';
-import 'package:life_pet/modules/pets/cadastr_pet_view.dart';
+import 'package:life_pet/modules/home/home_controller.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  final controller = HomeController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: pets.length,
+        itemCount: controller.pets.length,
         itemBuilder: (ctx, index) {
           return GestureDetector(
             onTap: () {},
@@ -19,7 +20,7 @@ class HomeView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Hero(
-                    tag: pets[index].id!,
+                    tag: controller.pets[index].id!,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 250,
@@ -28,7 +29,7 @@ class HomeView extends StatelessWidget {
                           Radius.circular(20),
                         ),
                         image: DecorationImage(
-                            image: AssetImage(pets[index].imageUrl),
+                            image: AssetImage(controller.pets[index].imageUrl),
                             fit: BoxFit.cover),
                       ),
                     ),
@@ -39,7 +40,7 @@ class HomeView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          pets[index].nome,
+                          controller.pets[index].nome,
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 24,
@@ -49,7 +50,7 @@ class HomeView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
-                            pets[index].descricao,
+                            controller.pets[index].descricao,
                             style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 16,
