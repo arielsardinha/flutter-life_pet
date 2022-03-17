@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:life_pet/models/pet_model.dart';
 
 class PerfilPetView extends StatelessWidget {
   const PerfilPetView({Key? key}) : super(key: key);
 
-  final imagem =
-      "https://www.bing.com/th?id=OIP.2zRCkDzffAtfdffvRipKNQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";
-
   @override
   Widget build(BuildContext context) {
+    final pet = ModalRoute.of(context)!.settings.arguments as Pet;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -18,8 +18,8 @@ class PerfilPetView extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 350,
-                  child: Image.network(
-                    imagem,
+                  child: Image.asset(
+                    pet.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -44,16 +44,17 @@ class PerfilPetView extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
-                    'Nome Pet',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    pet.nome,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 24),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10),
                     child: Text(
-                      'Bio do pet',
-                      style: TextStyle(
+                      pet.bio,
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.grey,
                       ),

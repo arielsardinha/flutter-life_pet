@@ -34,4 +34,9 @@ class HomeController {
       id: 3,
     ),
   ];
+
+  Future<void> acessPerfil(
+      {required int index, required BuildContext context}) async {
+    Navigator.of(context).pushNamed('/perfilPet', arguments: pets[index]);
+  }
 }
