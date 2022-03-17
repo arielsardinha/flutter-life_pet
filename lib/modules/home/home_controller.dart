@@ -11,6 +11,7 @@ class HomeController {
       imageUrl: "assets/images/toto.png",
       idade: 2,
       sexo: "Macho",
+      peso: 3.2,
       id: 1,
     ),
     Pet(
@@ -21,6 +22,7 @@ class HomeController {
       imageUrl: "assets/images/arnaldo.png",
       idade: 3,
       sexo: "Macho",
+      peso: 5.4,
       id: 2,
     ),
     Pet(
@@ -31,6 +33,7 @@ class HomeController {
       imageUrl: "assets/images/arnaldo.png",
       idade: 1,
       sexo: "Macho",
+      peso: 12.3,
       id: 3,
     ),
   ];

@@ -71,6 +71,7 @@ class PerfilPetView extends StatelessWidget {
                   cardItens(label: 'Idade', value: pet.idade.toString()),
                   cardItens(label: 'Sexo', value: pet.sexo),
                   cardItens(label: 'Cor', value: pet.cor),
+                  cardItens(label: 'Peso', value: pet.peso.toString()),
                   cardItens(label: 'id', value: pet.id.toString()),
                 ],
               ),
