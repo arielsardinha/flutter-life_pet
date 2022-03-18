@@ -10,7 +10,7 @@ class PetService {
     return _singleton;
   }
 
-  PetService._internal() {}
+  PetService._internal();
 
   List<Pet> getAllPets() {
     return _listaPet;

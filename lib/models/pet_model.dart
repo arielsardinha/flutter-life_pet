@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:life_pet/models/remedio_model.dart';
+
 class Pet {
   String nome, descricao, cor, bio, sexo;
   File imageUrl;
   int idade;
+  List<Remedio> remedios;
   double peso;
   int? id;
 
@@ -16,6 +19,7 @@ class Pet {
     required this.idade,
     required this.sexo,
     required this.peso,
+    this.remedios = const [],
     this.id,
   });
 }
