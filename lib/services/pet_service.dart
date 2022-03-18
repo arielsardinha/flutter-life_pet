@@ -29,4 +29,8 @@ class PetService {
   List<Pet> getAllPets() {
     return _listaPet;
   }
+
+  void addNewPet(Pet pet) {
+    _listaPet.add(pet);
+  }
 }

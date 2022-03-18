@@ -80,6 +80,17 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                       ),
                       labelStyle: TextStyle(color: Colors.redAccent)),
                 ),
+                TextFormField(
+                  validator: controller.validateFormTextFiel,
+                  controller: controller.pesoController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                      labelText: "Peso",
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.redAccent),
+                      ),
+                      labelStyle: TextStyle(color: Colors.redAccent)),
+                ),
                 DropdownButtonFormField<String>(
                   validator: controller.validateFormTextFiel,
                   items: controller.listaSexo,
@@ -168,9 +179,12 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                   margin: const EdgeInsets.only(top: 20),
                   child: OutlinedButton(
                     onPressed: () {
-                      controller.validateImage();
-
-                      _formKey.currentState?.validate();
+                      final isFormValid =
+                          _formKey.currentState?.validate() ?? false;
+                      final isImageValid = controller.validateImage();
+                      if (isFormValid && isImageValid) {
+                        controller.petAdd(context);
+                      }
                     },
                     child: const Text(
                       'Cadastrar',

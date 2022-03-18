@@ -2,8 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:life_pet/models/pet_model.dart';
+import 'package:life_pet/services/pet_service.dart';
 
 class CadastroPetController {
+  final _petService = PetService();
   final ImagePicker _imagePicker = ImagePicker();
   var notifyValueImage = ValueNotifier('');
   File image = File('');
@@ -23,6 +26,7 @@ class CadastroPetController {
   final descricaoController = TextEditingController();
   final bioController = TextEditingController();
   final idadeController = TextEditingController();
+  final pesoController = TextEditingController();
   String? sexo;
   String? cor;
 
@@ -54,11 +58,30 @@ class CadastroPetController {
     }
   }
 
-  void validateImage() {
+  bool validateImage() {
     if (image.path == '') {
       notifyValueImage.value = 'A foto é obrigatória';
+      return false;
     } else {
       notifyValueImage.value = '';
+      return true;
     }
+  }
+
+  void petAdd(BuildContext context) {
+    _petService.addNewPet(
+      Pet(
+        nome: nomeController.text,
+        descricao: descricaoController.text,
+        cor: cor!,
+        bio: bioController.text,
+        imageUrl: image.path,
+        idade: int.parse(idadeController.text),
+        sexo: sexo!,
+        peso: double.parse(pesoController.text),
+      ),
+    );
+
+    Navigator.of(context).pop();
   }
 }
