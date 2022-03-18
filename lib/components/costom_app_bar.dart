@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:life_pet/models/pet_model.dart';
 
 class CustonAppBar extends StatefulWidget {
-  CustonAppBar({Key? key}) : super(key: key);
-  int paginaAberta = 1;
+  CustonAppBar({Key? key, required this.pet}) : super(key: key);
+  int paginaAberta = 0;
+  final Pet pet;
 
   @override
   State<CustonAppBar> createState() => _CustonAppBarState();
@@ -55,6 +57,8 @@ class _CustonAppBarState extends State<CustonAppBar> {
                     setState(() {
                       widget.paginaAberta = 1;
                     });
+                    Navigator.of(context)
+                        .popAndPushNamed('/remedio', arguments: widget.pet);
                   },
                   minWidth: 40,
                   child: Column(
