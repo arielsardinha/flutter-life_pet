@@ -135,7 +135,10 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                     padding: const EdgeInsets.only(top: 20),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image.file(controller.image),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.file(controller.image),
+                      ),
                     ),
                   ),
                 ),

@@ -29,7 +29,8 @@ class HomeView extends StatelessWidget {
                           Radius.circular(20),
                         ),
                       ),
-                      child: Image.file(controller.pets[index].imageUrl),
+                      child: Image.file(controller.pets[index].imageUrl,
+                          fit: BoxFit.cover),
                     ),
                   ),
                   Padding(
