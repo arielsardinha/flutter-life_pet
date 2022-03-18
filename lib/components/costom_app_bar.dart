@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:life_pet/models/pet_model.dart';
 
 class CustonAppBar extends StatefulWidget {
-  CustonAppBar({Key? key, required this.pet}) : super(key: key);
-  int paginaAberta = 0;
+  CustonAppBar({Key? key, required this.pet, required this.paginaAberta})
+      : super(key: key);
+  int paginaAberta;
   final Pet pet;
 
   @override
@@ -27,9 +28,8 @@ class _CustonAppBarState extends State<CustonAppBar> {
               children: [
                 MaterialButton(
                   onPressed: () {
-                    setState(() {
-                      widget.paginaAberta = 0;
-                    });
+                    Navigator.of(context)
+                        .popAndPushNamed('/perfilPet', arguments: widget.pet);
                   },
                   minWidth: 40,
                   child: Column(
@@ -54,9 +54,6 @@ class _CustonAppBarState extends State<CustonAppBar> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    setState(() {
-                      widget.paginaAberta = 1;
-                    });
                     Navigator.of(context)
                         .popAndPushNamed('/remedio', arguments: widget.pet);
                   },
@@ -87,11 +84,7 @@ class _CustonAppBarState extends State<CustonAppBar> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 MaterialButton(
-                  onPressed: () {
-                    setState(() {
-                      widget.paginaAberta = 2;
-                    });
-                  },
+                  onPressed: () {},
                   minWidth: 40,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -113,11 +106,7 @@ class _CustonAppBarState extends State<CustonAppBar> {
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {
-                    setState(() {
-                      widget.paginaAberta = 3;
-                    });
-                  },
+                  onPressed: () {},
                   minWidth: 40,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

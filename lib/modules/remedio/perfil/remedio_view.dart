@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:life_pet/components/costom_app_bar.dart';
 import 'package:life_pet/models/pet_model.dart';
 
 class RemedioView extends StatelessWidget {
@@ -60,6 +61,15 @@ class RemedioView extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.redAccent,
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          )),
+      bottomNavigationBar: CustonAppBar(pet: pet, paginaAberta: 1),
     );
   }
 }
