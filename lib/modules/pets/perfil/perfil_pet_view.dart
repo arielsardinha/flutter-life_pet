@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_pet/components/costom_app_bar.dart';
 import 'package:life_pet/models/pet_model.dart';
 
 class PerfilPetView extends StatelessWidget {
@@ -89,6 +90,7 @@ class PerfilPetView extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: CustonAppBar(),
     );
   }
 }
