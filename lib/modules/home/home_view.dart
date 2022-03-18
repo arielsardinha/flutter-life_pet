@@ -24,14 +24,12 @@ class HomeView extends StatelessWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
                           Radius.circular(20),
                         ),
-                        image: DecorationImage(
-                            image: AssetImage(controller.pets[index].imageUrl),
-                            fit: BoxFit.cover),
                       ),
+                      child: Image.file(controller.pets[index].imageUrl),
                     ),
                   ),
                   Padding(

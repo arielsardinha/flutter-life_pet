@@ -75,13 +75,13 @@ class CadastroPetController {
         descricao: descricaoController.text,
         cor: cor!,
         bio: bioController.text,
-        imageUrl: image.path,
+        imageUrl: image,
         idade: int.parse(idadeController.text),
         sexo: sexo!,
         peso: double.parse(pesoController.text),
       ),
     );
 
-    Navigator.of(context).pop();
+    Navigator.of(context).pushReplacementNamed('/home');
   }
 }

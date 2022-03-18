@@ -1,36 +1,34 @@
+import 'dart:math';
+
 import 'package:life_pet/models/pet_model.dart';
 
 class PetService {
-  final _listaPet = <Pet>[
-    Pet(
-      nome: "Toto",
-      descricao: "Um cachorro esperto",
-      cor: "Preto",
-      bio: "Um totó bem esperto",
-      imageUrl: "assets/images/toto.png",
-      idade: 2,
-      sexo: "Macho",
-      peso: 3.2,
-      id: 1,
-    ),
-    Pet(
-      nome: "Arnaldo",
-      descricao: "Pincher elétrico",
-      cor: "Preto",
-      bio: "Sou um pincher elétrico",
-      imageUrl: "assets/images/arnaldo.png",
-      idade: 3,
-      sexo: "Macho",
-      peso: 5.4,
-      id: 2,
-    ),
-  ];
+  final _listaPet = <Pet>[];
+  static final PetService _singleton = PetService._internal();
+
+  factory PetService() {
+    return _singleton;
+  }
+
+  PetService._internal() {}
 
   List<Pet> getAllPets() {
     return _listaPet;
   }
 
   void addNewPet(Pet pet) {
-    _listaPet.add(pet);
+    _listaPet.add(
+      Pet(
+        nome: pet.nome,
+        descricao: pet.descricao,
+        cor: pet.cor,
+        bio: pet.bio,
+        imageUrl: pet.imageUrl,
+        idade: pet.idade,
+        sexo: pet.sexo,
+        peso: pet.peso,
+        id: Random().nextInt(1000),
+      ),
+    );
   }
 }

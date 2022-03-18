@@ -133,7 +133,10 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                   visible: controller.image.path != '',
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20),
-                    child: Image.file(controller.image),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.file(controller.image),
+                    ),
                   ),
                 ),
                 Padding(

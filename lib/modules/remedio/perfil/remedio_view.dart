@@ -20,7 +20,7 @@ class RemedioView extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 350,
-                child: Image.asset(
+                child: Image.file(
                   pet.imageUrl,
                   fit: BoxFit.cover,
                 ),

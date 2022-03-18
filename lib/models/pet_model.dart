@@ -1,5 +1,8 @@
+import 'dart:io';
+
 class Pet {
-  String nome, descricao, cor, bio, imageUrl, sexo;
+  String nome, descricao, cor, bio, sexo;
+  File imageUrl;
   int idade;
   double peso;
   int? id;
