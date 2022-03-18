@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:life_pet/components/costom_app_bar.dart';
 import 'package:life_pet/models/pet_model.dart';
+import 'package:life_pet/modules/remedio/perfil/remedio_controller.dart';
 
 class RemedioView extends StatelessWidget {
-  const RemedioView({Key? key}) : super(key: key);
+  RemedioView({Key? key}) : super(key: key);
+  final controller = RemedioController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,8 @@ class RemedioView extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () =>
+              controller.acessCadastroPet(context: context, pet: pet),
           backgroundColor: Colors.redAccent,
           child: const Icon(
             Icons.add,
