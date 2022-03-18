@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:life_pet/components/costom_app_bar.dart';
 import 'package:life_pet/models/pet_model.dart';
+import 'package:life_pet/modules/pets/perfil/perfil_pet_controller.dart';
 
 class PerfilPetView extends StatelessWidget {
   const PerfilPetView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final pet = ModalRoute.of(context)!.settings.arguments as Pet;
+    final petId = ModalRoute.of(context)!.settings.arguments as int;
+    final controller = PerfilPetController(petId: petId);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -20,7 +22,7 @@ class PerfilPetView extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 350,
                   child: Image.file(
-                    pet.imageUrl,
+                    controller.pet.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -47,14 +49,14 @@ class PerfilPetView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    pet.nome,
+                    controller.pet.nome,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 24),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Text(
-                      pet.descricao,
+                      controller.pet.descricao,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.grey,
@@ -69,18 +71,20 @@ class PerfilPetView extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  cardItens(label: 'Idade', value: pet.idade.toString()),
-                  cardItens(label: 'Sexo', value: pet.sexo),
-                  cardItens(label: 'Cor', value: pet.cor),
-                  cardItens(label: 'Peso', value: pet.peso.toString()),
-                  cardItens(label: 'id', value: pet.id.toString()),
+                  cardItens(
+                      label: 'Idade', value: controller.pet.idade.toString()),
+                  cardItens(label: 'Sexo', value: controller.pet.sexo),
+                  cardItens(label: 'Cor', value: controller.pet.cor),
+                  cardItens(
+                      label: 'Peso', value: controller.pet.peso.toString()),
+                  cardItens(label: 'id', value: controller.pet.id.toString()),
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
               child: Text(
-                pet.bio,
+                controller.pet.bio,
                 style: const TextStyle(
                     fontFamily: 'Montserrat', fontSize: 16, height: 1.5),
                 overflow: TextOverflow.ellipsis,
@@ -98,7 +102,7 @@ class PerfilPetView extends StatelessWidget {
             Icons.edit,
             color: Colors.white,
           )),
-      bottomNavigationBar: CustonAppBar(pet: pet, paginaAberta: 0),
+      bottomNavigationBar: CustonAppBar(pet: controller.pet, paginaAberta: 0),
     );
   }
 }

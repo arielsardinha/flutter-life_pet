@@ -31,4 +31,8 @@ class PetService {
       ),
     );
   }
+
+  Pet getFindPet(int petId) {
+    return _listaPet.singleWhere((pet) => pet.id == petId);
+  }
 }

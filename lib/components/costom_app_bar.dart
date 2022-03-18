@@ -28,8 +28,8 @@ class _CustonAppBarState extends State<CustonAppBar> {
               children: [
                 MaterialButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .popAndPushNamed('/perfilPet', arguments: widget.pet);
+                    Navigator.of(context).popAndPushNamed('/perfilPet',
+                        arguments: widget.pet.id);
                   },
                   minWidth: 40,
                   child: Column(
