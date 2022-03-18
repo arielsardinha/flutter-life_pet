@@ -90,6 +90,14 @@ class PerfilPetView extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.redAccent,
+          child: const Icon(
+            Icons.edit,
+            color: Colors.white,
+          )),
       bottomNavigationBar: CustonAppBar(),
     );
   }

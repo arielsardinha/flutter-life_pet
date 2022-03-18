@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustonAppBar extends StatefulWidget {
-  const CustonAppBar({Key? key}) : super(key: key);
+  CustonAppBar({Key? key}) : super(key: key);
+  int paginaAberta = 1;
 
   @override
   State<CustonAppBar> createState() => _CustonAppBarState();
@@ -11,6 +12,8 @@ class _CustonAppBarState extends State<CustonAppBar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      shape: const CircularNotchedRectangle(),
+      notchMargin: 5,
       child: SizedBox(
         height: 60,
         child: Row(
@@ -21,35 +24,55 @@ class _CustonAppBarState extends State<CustonAppBar> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.paginaAberta = 0;
+                    });
+                  },
                   minWidth: 40,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.pets,
-                        color: Colors.redAccent,
+                        color: widget.paginaAberta == 0
+                            ? Colors.redAccent
+                            : Colors.grey,
                       ),
                       Text(
                         'Perfil',
-                        style: TextStyle(color: Colors.redAccent),
+                        style: TextStyle(
+                          color: widget.paginaAberta == 0
+                              ? Colors.redAccent
+                              : Colors.grey,
+                        ),
                       )
                     ],
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.paginaAberta = 1;
+                    });
+                  },
                   minWidth: 40,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.healing,
-                        color: Colors.redAccent,
+                        color: widget.paginaAberta == 1
+                            ? Colors.redAccent
+                            : Colors.grey,
                       ),
                       Text(
                         'Remedio',
-                        style: TextStyle(color: Colors.redAccent),
+                        style: TextStyle(
+                          color: widget.paginaAberta == 1
+                              ? Colors.redAccent
+                              : Colors.grey,
+                        ),
                       )
                     ],
                   ),
@@ -60,35 +83,53 @@ class _CustonAppBarState extends State<CustonAppBar> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.paginaAberta = 2;
+                    });
+                  },
                   minWidth: 40,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.local_hospital,
-                        color: Colors.redAccent,
+                        color: widget.paginaAberta == 2
+                            ? Colors.redAccent
+                            : Colors.grey,
                       ),
                       Text(
                         'Consulta',
-                        style: TextStyle(color: Colors.redAccent),
+                        style: TextStyle(
+                            color: widget.paginaAberta == 2
+                                ? Colors.redAccent
+                                : Colors.grey),
                       )
                     ],
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.paginaAberta = 3;
+                    });
+                  },
                   minWidth: 40,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.event_note,
-                        color: Colors.redAccent,
+                        color: widget.paginaAberta == 3
+                            ? Colors.redAccent
+                            : Colors.grey,
                       ),
                       Text(
                         'Anotacoes',
-                        style: TextStyle(color: Colors.redAccent),
+                        style: TextStyle(
+                            color: widget.paginaAberta == 3
+                                ? Colors.redAccent
+                                : Colors.grey),
                       )
                     ],
                   ),
