@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 class CadastroPetController {
   final ImagePicker _imagePicker = ImagePicker();
-
+  var notifyValueImage = ValueNotifier('');
   File image = File('');
 
   final listaCor = const [
@@ -51,6 +51,14 @@ class CadastroPetController {
       return null;
     } else {
       return "O campo é obrigatório";
+    }
+  }
+
+  void validateImage() {
+    if (image.path == '') {
+      notifyValueImage.value = 'A foto é obrigatória';
+    } else {
+      notifyValueImage.value = '';
     }
   }
 }

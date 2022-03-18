@@ -15,6 +15,14 @@ class _CadastroPetViewState extends State<CadastroPetView> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    controller.notifyValueImage.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -102,6 +110,14 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                     labelStyle: TextStyle(color: Colors.redAccent),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Text(
+                    controller.notifyValueImage.value,
+                    style: const TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 Visibility(
                   visible: controller.image.path != '',
                   child: Padding(
@@ -152,6 +168,8 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                   margin: const EdgeInsets.only(top: 20),
                   child: OutlinedButton(
                     onPressed: () {
+                      controller.validateImage();
+
                       _formKey.currentState?.validate();
                     },
                     child: const Text(
