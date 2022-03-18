@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_pet/modules/remedio/cadastro_remedio_controller.dart';
 
 class CadastroRemedioView extends StatefulWidget {
   const CadastroRemedioView({Key? key}) : super(key: key);
@@ -8,6 +9,9 @@ class CadastroRemedioView extends StatefulWidget {
 }
 
 class _CadastroRemedioViewState extends State<CadastroRemedioView> {
+  final _formKey = GlobalKey<FormState>();
+  final controller = CadastroRemedioController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,9 +23,13 @@ class _CadastroRemedioViewState extends State<CadastroRemedioView> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Form(
+            key: _formKey,
             child: Column(
               children: [
                 TextFormField(
+                  validator: (value) {
+                    return controller.validateFormTextFiel(value);
+                  },
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     labelText: 'Nome do remedio',
@@ -32,6 +40,7 @@ class _CadastroRemedioViewState extends State<CadastroRemedioView> {
                   ),
                 ),
                 TextFormField(
+                  validator: (value) => controller.validateFormTextFiel(value),
                   keyboardType: TextInputType.datetime,
                   decoration: const InputDecoration(
                     labelText: 'Data do remedio',
@@ -45,7 +54,9 @@ class _CadastroRemedioViewState extends State<CadastroRemedioView> {
                   width: MediaQuery.of(context).size.width,
                   margin: const EdgeInsets.only(top: 20),
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _formKey.currentState?.validate();
+                    },
                     child: const Text(
                       'Cadastrar',
                       style: TextStyle(color: Colors.white),
