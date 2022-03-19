@@ -7,11 +7,11 @@ import 'package:life_pet/modules/remedio/perfil/remedio_controller.dart';
 
 class RemedioView extends StatelessWidget {
   RemedioView({Key? key}) : super(key: key);
-  final controller = RemedioController();
 
   @override
   Widget build(BuildContext context) {
-    final pet = ModalRoute.of(context)!.settings.arguments as Pet;
+    final petId = ModalRoute.of(context)!.settings.arguments as int;
+    final controller = RemedioController(petId: petId);
     return Scaffold(
       body: Column(
         children: [
@@ -21,7 +21,7 @@ class RemedioView extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 350,
                 child: Image.file(
-                  pet.imageUrl,
+                  controller.pet.imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -58,7 +58,9 @@ class RemedioView extends StatelessWidget {
           ),
           Expanded(
             child: ListView(children: [
-              cardRemedio(titulo: pet.nome, descricao: pet.descricao),
+              cardRemedio(
+                  titulo: controller.pet.nome,
+                  descricao: controller.pet.descricao),
             ]),
           ),
         ],
@@ -66,13 +68,14 @@ class RemedioView extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
           onPressed: () =>
-              controller.acessCadastroPet(context: context, pet: pet),
+              controller.acessCadastroPet(context: context, petId: petId),
           backgroundColor: Colors.redAccent,
           child: const Icon(
             Icons.add,
             color: Colors.white,
           )),
-      bottomNavigationBar: CustonAppBar(pet: pet, paginaAberta: 1),
+      bottomNavigationBar:
+          CustonAppBar(petId: controller.pet.id!, paginaAberta: 1),
     );
   }
 }

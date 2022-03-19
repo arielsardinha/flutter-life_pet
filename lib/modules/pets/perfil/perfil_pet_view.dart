@@ -102,7 +102,8 @@ class PerfilPetView extends StatelessWidget {
             Icons.edit,
             color: Colors.white,
           )),
-      bottomNavigationBar: CustonAppBar(pet: controller.pet, paginaAberta: 0),
+      bottomNavigationBar:
+          CustonAppBar(petId: controller.pet.id!, paginaAberta: 0),
     );
   }
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:life_pet/models/pet_model.dart';
 
 class CustonAppBar extends StatefulWidget {
-  CustonAppBar({Key? key, required this.pet, required this.paginaAberta})
+  CustonAppBar({Key? key, required this.petId, required this.paginaAberta})
       : super(key: key);
   int paginaAberta;
-  final Pet pet;
+  final int petId;
 
   @override
   State<CustonAppBar> createState() => _CustonAppBarState();
@@ -28,8 +28,8 @@ class _CustonAppBarState extends State<CustonAppBar> {
               children: [
                 MaterialButton(
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/perfilPet',
-                        arguments: widget.pet.id);
+                    Navigator.of(context)
+                        .popAndPushNamed('/perfilPet', arguments: widget.petId);
                   },
                   minWidth: 40,
                   child: Column(
@@ -55,7 +55,7 @@ class _CustonAppBarState extends State<CustonAppBar> {
                 MaterialButton(
                   onPressed: () {
                     Navigator.of(context)
-                        .popAndPushNamed('/remedio', arguments: widget.pet);
+                        .popAndPushNamed('/remedio', arguments: widget.petId);
                   },
                   minWidth: 40,
                   child: Column(
