@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:life_pet/components/costom_app_bar.dart';
-import 'package:life_pet/models/pet_model.dart';
+import 'package:life_pet/mixins/format_date.dart';
 import 'package:life_pet/modules/remedio/perfil/remedio_controller.dart';
 
-class RemedioView extends StatelessWidget {
+class RemedioView extends StatelessWidget with FormatDateMixin {
   RemedioView({Key? key}) : super(key: key);
 
   @override
@@ -57,11 +55,16 @@ class RemedioView extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView(children: [
-              cardRemedio(
-                  titulo: controller.pet.nome,
-                  descricao: controller.pet.descricao),
-            ]),
+            child: ListView.builder(
+              itemCount: controller.listaRemedio.length,
+              itemBuilder: (ctx, i) {
+                final remedio = controller.listaRemedio[i];
+                return cardRemedio(
+                  titulo: remedio.nome,
+                  descricao: convertDateToString(remedio.data),
+                );
+              },
+            ),
           ),
         ],
       ),

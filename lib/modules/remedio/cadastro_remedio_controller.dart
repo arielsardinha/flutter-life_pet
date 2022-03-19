@@ -20,6 +20,7 @@ class CadastroRemedioController {
     _remedioService.addNewRemedio(
       Remedio(nome: nomeController.text, data: dataSelecionada, petId: petId),
     );
+    Navigator.of(context).pop();
     Navigator.of(context).pushReplacementNamed('/remedio', arguments: petId);
   }
 }
