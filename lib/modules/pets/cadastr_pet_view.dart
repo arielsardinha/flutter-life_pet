@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:life_pet/modules/pets/cadastro_pet_controller.dart';
 
 class CadastroPetView extends StatefulWidget {
-  const CadastroPetView({Key? key}) : super(key: key);
+  final int? petId;
+  const CadastroPetView({Key? key, this.petId}) : super(key: key);
 
   @override
   State<CadastroPetView> createState() => _CadastroPetViewState();
@@ -19,6 +20,7 @@ class _CadastroPetViewState extends State<CadastroPetView> {
     controller.notifyValueImage.addListener(() {
       setState(() {});
     });
+    controller.getFindPet(widget.petId);
     super.initState();
   }
 
@@ -92,6 +94,7 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                       labelStyle: TextStyle(color: Colors.redAccent)),
                 ),
                 DropdownButtonFormField<String>(
+                  value: controller.sexo,
                   validator: controller.validateFormTextFiel,
                   items: controller.listaSexo,
                   onChanged: (value) {
@@ -107,6 +110,7 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                   ),
                 ),
                 DropdownButtonFormField<String>(
+                  value: controller.cor,
                   validator: controller.validateFormTextFiel,
                   items: controller.listaCor,
                   onChanged: (value) {
@@ -189,12 +193,16 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                           _formKey.currentState?.validate() ?? false;
                       final isImageValid = controller.validateImage();
                       if (isFormValid && isImageValid) {
-                        controller.petAdd(context);
+                        if (widget.petId == null) {
+                          controller.petAdd(context);
+                        } else {
+                          controller.editPet(context);
+                        }
                       }
                     },
-                    child: const Text(
-                      'Cadastrar',
-                      style: TextStyle(color: Colors.white),
+                    child: Text(
+                      widget.petId == null ? 'Cadastrar' : 'Editar',
+                      style: const TextStyle(color: Colors.white),
                     ),
                     style: ButtonStyle(
                       backgroundColor:

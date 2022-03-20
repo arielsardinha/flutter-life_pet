@@ -67,7 +67,7 @@ class HomeView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.of(context).pushNamed('/cadastroPet');
+          controller.acessFormPet(context: context);
         },
         label: const Text("Cadastrar"),
         icon: const Icon(Icons.pets),

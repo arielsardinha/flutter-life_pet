@@ -6,6 +6,7 @@ import 'package:life_pet/models/pet_model.dart';
 import 'package:life_pet/services/pet_service.dart';
 
 class CadastroPetController {
+  Pet? pet;
   final _petService = PetService();
   final ImagePicker _imagePicker = ImagePicker();
   var notifyValueImage = ValueNotifier('');
@@ -83,5 +84,39 @@ class CadastroPetController {
     );
 
     Navigator.of(context).pushReplacementNamed('/home');
+  }
+
+  void editPet(BuildContext context) {
+    _petService.editPet(
+      Pet(
+        nome: nomeController.text,
+        descricao: descricaoController.text,
+        cor: cor!,
+        bio: bioController.text,
+        imageUrl: image,
+        idade: int.parse(idadeController.text),
+        sexo: sexo!,
+        peso: double.parse(pesoController.text),
+        id: pet!.id,
+      ),
+    );
+    Navigator.of(context).pop();
+    Navigator.of(context)
+        .pushReplacementNamed('/perfilPet', arguments: pet!.id);
+  }
+
+  void getFindPet(int? petId) {
+    if (petId != null) {
+      pet = _petService.getFindPet(petId);
+
+      nomeController.text = pet!.nome;
+      descricaoController.text = pet!.descricao;
+      bioController.text = pet!.bio;
+      idadeController.text = pet!.idade.toString();
+      pesoController.text = pet!.peso.toString();
+      sexo = pet!.sexo;
+      cor = pet!.cor;
+      image = pet!.imageUrl;
+    }
   }
 }

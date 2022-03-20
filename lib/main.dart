@@ -16,9 +16,19 @@ class Main extends StatelessWidget {
       title: 'Life Pet',
       debugShowCheckedModeBanner: false,
       initialRoute: '/home',
+      onGenerateRoute: (setting) {
+        if (setting.name == "/cadastroPet") {
+          final petId = setting.arguments as int?;
+          return MaterialPageRoute(builder: (ctx) {
+            return CadastroPetView(
+              petId: petId,
+            );
+          });
+        }
+        return null;
+      },
       routes: {
         '/home': (context) => HomeView(),
-        '/cadastroPet': (context) => const CadastroPetView(),
         "/perfilPet": (context) => const PerfilPetView(),
         "/remedio": (context) => RemedioView(),
         "/cadastroRemedio": (context) => const CadastroRemedioView(),

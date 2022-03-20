@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:life_pet/components/costom_app_bar.dart';
-import 'package:life_pet/models/pet_model.dart';
 import 'package:life_pet/modules/pets/perfil/perfil_pet_controller.dart';
 
 class PerfilPetView extends StatelessWidget {
@@ -96,7 +95,9 @@ class PerfilPetView extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            controller.acessFormPet(context: context, petId: petId);
+          },
           backgroundColor: Colors.redAccent,
           child: const Icon(
             Icons.edit,

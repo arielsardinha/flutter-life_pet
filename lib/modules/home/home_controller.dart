@@ -13,4 +13,8 @@ class HomeController {
       {required int index, required BuildContext context}) async {
     Navigator.of(context).pushNamed('/perfilPet', arguments: pets[index].id);
   }
+
+  Future<void> acessFormPet({required BuildContext context}) async {
+    Navigator.of(context).pushNamed('/cadastroPet');
+  }
 }
