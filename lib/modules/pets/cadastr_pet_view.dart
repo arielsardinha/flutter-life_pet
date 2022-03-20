@@ -60,16 +60,20 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                       ),
                       labelStyle: TextStyle(color: Colors.redAccent)),
                 ),
-                TextFormField(
-                  validator: controller.validateFormTextFiel,
-                  controller: controller.bioController,
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                      labelText: "Bio",
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent),
-                      ),
-                      labelStyle: TextStyle(color: Colors.redAccent)),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxHeight: 150),
+                  child: TextFormField(
+                    maxLines: null,
+                    validator: controller.validateFormTextFiel,
+                    controller: controller.bioController,
+                    keyboardType: TextInputType.text,
+                    decoration: const InputDecoration(
+                        labelText: "Bio",
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.redAccent),
+                        ),
+                        labelStyle: TextStyle(color: Colors.redAccent)),
+                  ),
                 ),
                 TextFormField(
                   validator: controller.validateFormTextFiel,
