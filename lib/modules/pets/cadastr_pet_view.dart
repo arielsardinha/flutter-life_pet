@@ -28,7 +28,10 @@ class _CadastroPetViewState extends State<CadastroPetView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Cadastro Pet'), backgroundColor: Colors.redAccent),
+          title: Text(widget.petId == null
+              ? 'Cadastro Pet'
+              : "Editar O ${controller.pet!.nome}"),
+          backgroundColor: Colors.redAccent),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
