@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:life_pet/components/botao_animado.dart';
+import 'package:life_pet/components/botao_animado/botao_animado.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
