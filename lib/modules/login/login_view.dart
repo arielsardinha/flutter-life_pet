@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_pet/components/botao_animado.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class LoginView extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2,
                 margin: const EdgeInsets.only(top: 62),
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
                     Container(
@@ -89,9 +90,12 @@ class LoginView extends StatelessWidget {
                             hintText: 'Senha'),
                       ),
                     ),
+                    const Spacer(),
+                    const BotaoAnimado(),
+                    const Spacer(),
                   ],
                 ),
-              )
+              ),
             ],
           )),
     );
