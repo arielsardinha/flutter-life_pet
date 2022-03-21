@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_pet/modules/home/home_view.dart';
+import 'package:life_pet/modules/login/login_view.dart';
 import 'package:life_pet/modules/pets/cadastr_pet_view.dart';
 import 'package:life_pet/modules/pets/perfil/perfil_pet_view.dart';
 import 'package:life_pet/modules/remedio/cadastro_remedio_view.dart';
@@ -15,7 +16,7 @@ class Main extends StatelessWidget {
     return MaterialApp(
       title: 'Life Pet',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/login',
       onGenerateRoute: (setting) {
         if (setting.name == "/cadastroPet") {
           final petId = setting.arguments as int?;
@@ -32,6 +33,7 @@ class Main extends StatelessWidget {
         "/perfilPet": (context) => const PerfilPetView(),
         "/remedio": (context) => RemedioView(),
         "/cadastroRemedio": (context) => const CadastroRemedioView(),
+        '/login': (context) => const LoginView(),
       },
     );
   }
