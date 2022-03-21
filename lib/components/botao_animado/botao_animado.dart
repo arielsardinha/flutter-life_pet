@@ -15,7 +15,7 @@ class _BotaoAnimadoState extends State<BotaoAnimado> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.animar();
+        controller.animar(context);
       },
       child: AnimatedBuilder(
           animation: controller,
