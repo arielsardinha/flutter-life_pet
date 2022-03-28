@@ -3,10 +3,8 @@ import 'package:life_pet/models/pet_model.dart';
 import 'package:life_pet/services/pet_service.dart';
 
 class HomeController {
-  final _petService = PetService();
-  HomeController() {
-    pets = _petService.getAllPets();
-  }
+  final petService = PetService();
+
   var pets = <Pet>[];
 
   Future<void> acessPerfil(

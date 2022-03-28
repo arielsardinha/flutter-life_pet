@@ -35,4 +35,17 @@ class Pet {
       "imageUrl": imageUrl,
     };
   }
+
+  factory Pet.fromMap(Map json) {
+    return Pet(
+      nome: json['nome'],
+      descricao: json['descricao'],
+      cor: json['cor'],
+      bio: json['bio'],
+      imageUrl: json['imageUrl'],
+      idade: json['idade'],
+      sexo: json['sexo'],
+      peso: json['peso'],
+    );
+  }
 }
