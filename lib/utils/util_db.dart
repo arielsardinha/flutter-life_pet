@@ -7,8 +7,27 @@ class DbUtil {
 
     return openDatabase(
       join(dbPath, 'pets.db'),
-      onCreate: (db, version) {},
+      onCreate: (database, version) {
+        _creatDb(database);
+      },
       version: 1,
     );
+  }
+
+  static void _creatDb(Database database) {
+    database.execute(""" 
+    CREATE TABLE pets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(50),
+    imageUrl BLOB,
+    descricao TEXT,
+    idade INTEGER,
+    sexo VARCHAR(8),
+    cor VARCHAR(8),
+    bio TEXT,
+    peso REAL,
+    )
+    
+    """);
   }
 }
