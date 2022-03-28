@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:life_pet/models/pet_model.dart';
+import 'package:life_pet/utils/util_db.dart';
 
 class PetService {
   var _listaPet = <Pet>[];
@@ -26,19 +27,17 @@ class PetService {
   }
 
   void addNewPet(Pet pet) {
-    _listaPet.add(
-      Pet(
-        nome: pet.nome,
-        descricao: pet.descricao,
-        cor: pet.cor,
-        bio: pet.bio,
-        imageUrl: pet.imageUrl,
-        idade: pet.idade,
-        sexo: pet.sexo,
-        peso: pet.peso,
-        id: Random().nextInt(1000),
-      ),
-    );
+    final data = {
+      "nome": pet.nome,
+      'descricao': pet.descricao,
+      "idade": pet.idade,
+      "sexo": pet.sexo,
+      "cor": pet.cor,
+      "bio": pet.bio,
+      "peso": pet.peso,
+      "imageUrl": pet.imageUrl,
+    };
+    DbUtil.insertData('pets', data);
   }
 
   Pet getFindPet(int petId) {

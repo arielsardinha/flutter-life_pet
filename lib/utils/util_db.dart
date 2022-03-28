@@ -30,4 +30,11 @@ class DbUtil {
     
     """);
   }
+
+  static Future<void> insertData(
+      String table, Map<String, Object?> data) async {
+    final db = await database();
+
+    db.insert(table, data, conflictAlgorithm: ConflictAlgorithm.replace);
+  }
 }
