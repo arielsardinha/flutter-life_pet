@@ -141,14 +141,14 @@ class _CadastroPetViewState extends State<CadastroPetView> {
                   ),
                 ),
                 Visibility(
-                  visible: controller.image.path != '',
+                  visible: controller.image.isNotEmpty,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.file(controller.image),
+                        child: Image.memory(controller.image),
                       ),
                     ),
                   ),

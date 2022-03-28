@@ -1,16 +1,18 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:life_pet/mixins/format_image.dart';
 import 'package:life_pet/models/pet_model.dart';
 import 'package:life_pet/services/pet_service.dart';
 
-class CadastroPetController {
+class CadastroPetController with FormatImageMixin {
   Pet? pet;
   final _petService = PetService();
   final ImagePicker _imagePicker = ImagePicker();
   var notifyValueImage = ValueNotifier('');
-  File image = File('');
+  Uint8List image = Uint8List(0);
 
   final listaCor = const [
     DropdownMenuItem(child: Text('Preto'), value: 'Preto'),
@@ -35,7 +37,7 @@ class CadastroPetController {
     final XFile? _image =
         await _imagePicker.pickImage(source: ImageSource.gallery);
     if (_image != null) {
-      image = File(_image.path);
+      image = convertImageUint8List(File(_image.path));
     }
   }
 
@@ -43,12 +45,12 @@ class CadastroPetController {
     final XFile? _image =
         await _imagePicker.pickImage(source: ImageSource.camera);
     if (_image != null) {
-      image = File(_image.path);
+      image = convertImageUint8List(File(_image.path));
     }
   }
 
   void clearImage() {
-    image = File('');
+    image = Uint8List(0);
   }
 
   String? validateFormTextFiel(String? value) {
@@ -60,7 +62,7 @@ class CadastroPetController {
   }
 
   bool validateImage() {
-    if (image.path == '') {
+    if (image.isEmpty) {
       notifyValueImage.value = 'A foto é obrigatória';
       return false;
     } else {

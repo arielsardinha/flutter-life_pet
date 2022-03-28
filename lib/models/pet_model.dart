@@ -1,10 +1,9 @@
-import 'dart:io';
-
+import 'dart:typed_data';
 import 'package:life_pet/models/remedio_model.dart';
 
 class Pet {
   String nome, descricao, cor, bio, sexo;
-  File imageUrl;
+  Uint8List imageUrl;
   int idade;
   List<Remedio> remedios;
   double peso;
@@ -22,4 +21,18 @@ class Pet {
     this.remedios = const [],
     this.id,
   });
+
+  Map<String, Object?> toMap() {
+    return {
+      "id": id,
+      "nome": nome,
+      'descricao': descricao,
+      "idade": idade,
+      "sexo": sexo,
+      "cor": cor,
+      "bio": bio,
+      "peso": peso,
+      "imageUrl": imageUrl,
+    };
+  }
 }

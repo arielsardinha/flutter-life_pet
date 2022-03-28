@@ -23,11 +23,10 @@ class DbUtil {
     descricao TEXT,
     idade INTEGER,
     sexo VARCHAR(8),
-    cor VARCHAR(8),
+    cor VARCHAR(20),
     bio TEXT,
-    peso REAL,
+    peso REAL
     )
-    
     """);
   }
 
@@ -35,6 +34,6 @@ class DbUtil {
       String table, Map<String, Object?> data) async {
     final db = await database();
 
-    db.insert(table, data, conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(table, data, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 }

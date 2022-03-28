@@ -18,7 +18,7 @@ class RemedioView extends StatelessWidget with FormatDateMixin {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 350,
-                child: Image.file(
+                child: Image.memory(
                   controller.pet.imageUrl,
                   fit: BoxFit.cover,
                 ),

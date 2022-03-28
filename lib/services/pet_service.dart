@@ -27,17 +27,7 @@ class PetService {
   }
 
   void addNewPet(Pet pet) {
-    final data = {
-      "nome": pet.nome,
-      'descricao': pet.descricao,
-      "idade": pet.idade,
-      "sexo": pet.sexo,
-      "cor": pet.cor,
-      "bio": pet.bio,
-      "peso": pet.peso,
-      "imageUrl": pet.imageUrl,
-    };
-    DbUtil.insertData('pets', data);
+    DbUtil.insertData('pets', pet.toMap());
   }
 
   Pet getFindPet(int petId) {
