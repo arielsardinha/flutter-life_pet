@@ -71,8 +71,8 @@ class CadastroPetController with FormatImageMixin {
     }
   }
 
-  void petAdd(BuildContext context) {
-    _petService.addNewPet(
+  Future<void> petAdd(BuildContext context) async {
+    await _petService.addNewPet(
       Pet(
         nome: nomeController.text,
         descricao: descricaoController.text,

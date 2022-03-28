@@ -46,6 +46,7 @@ class Pet {
       idade: json['idade'],
       sexo: json['sexo'],
       peso: json['peso'],
+      id: json['id'],
     );
   }
 }

@@ -15,8 +15,8 @@ class PetService {
 
   Future<List<Pet>> getAllPets() async {
     final json = await DbUtil.getData('pets');
-    print(json.map((map) => Pet.fromMap(map)).toList());
-    return _listaPet;
+
+    return json.map((map) => Pet.fromMap(map)).toList();
   }
 
   void editPet(Pet newPet) {
@@ -28,8 +28,8 @@ class PetService {
     }).toList();
   }
 
-  void addNewPet(Pet pet) {
-    DbUtil.insertData('pets', pet.toMap());
+  Future<void> addNewPet(Pet pet) async {
+    await DbUtil.insertData('pets', pet.toMap());
   }
 
   Pet getFindPet(int petId) {
