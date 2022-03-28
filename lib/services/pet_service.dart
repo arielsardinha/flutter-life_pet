@@ -15,21 +15,7 @@ class PetService {
 
   Future<List<Pet>> getAllPets() async {
     final json = await DbUtil.getData('pets');
-    final pets = json
-        .map(
-          (map) => Pet(
-            nome: map['nome'],
-            descricao: map['descricao'],
-            cor: map['cor'],
-            bio: map['bio'],
-            imageUrl: map['imageUrl'],
-            idade: map['idade'],
-            sexo: map['sexo'],
-            peso: map['peso'],
-          ),
-        )
-        .toList();
-    print(pets);
+    print(json.map((map) => Pet.fromMap(map)).toList());
     return _listaPet;
   }
 
