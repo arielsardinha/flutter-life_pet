@@ -1,73 +1,86 @@
 import 'package:flutter/material.dart';
 import 'package:life_pet/components/costom_app_bar.dart';
 import 'package:life_pet/mixins/format_date.dart';
+import 'package:life_pet/models/pet_model.dart';
 import 'package:life_pet/modules/remedio/perfil/remedio_controller.dart';
 
 class RemedioView extends StatelessWidget with FormatDateMixin {
   RemedioView({Key? key}) : super(key: key);
+  final controller = RemedioController();
 
   @override
   Widget build(BuildContext context) {
     final petId = ModalRoute.of(context)!.settings.arguments as int;
-    final controller = RemedioController(petId: petId);
     return Scaffold(
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 350,
-                child: Image.memory(
-                  controller.pet.imageUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 40, left: 10),
-                child: CircleAvatar(
-                  backgroundColor: Colors.redAccent,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+      body: FutureBuilder<Pet>(
+          future: controller.petService.getFindPet(petId),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final pet = snapshot.data!;
+              return Column(
+                children: [
+                  Stack(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 350,
+                        child: Image.memory(
+                          pet.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40, left: 10),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.redAccent,
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-            child: Row(
-              children: const [
-                Text(
-                  'Remédio',
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: controller.listaRemedio.length,
-              itemBuilder: (ctx, i) {
-                final remedio = controller.listaRemedio[i];
-                return cardRemedio(
-                  titulo: remedio.nome,
-                  descricao: convertDateToString(remedio.data),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 20),
+                    child: Row(
+                      children: const [
+                        Text(
+                          'Remédio',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  // Expanded(
+                  //   child: ListView.builder(
+                  //     itemCount: controller.listaRemedio.length,
+                  //     itemBuilder: (ctx, i) {
+                  //       final remedio = controller.listaRemedio[i];
+                  //       return cardRemedio(
+                  //         titulo: remedio.nome,
+                  //         descricao: convertDateToString(remedio.data),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
+                ],
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
           onPressed: () =>
@@ -77,8 +90,7 @@ class RemedioView extends StatelessWidget with FormatDateMixin {
             Icons.add,
             color: Colors.white,
           )),
-      bottomNavigationBar:
-          CustonAppBar(petId: controller.pet.id!, paginaAberta: 1),
+      bottomNavigationBar: CustonAppBar(petId: petId, paginaAberta: 1),
     );
   }
 }
