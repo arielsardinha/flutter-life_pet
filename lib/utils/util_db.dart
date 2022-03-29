@@ -28,6 +28,16 @@ class DbUtil {
     peso REAL
     )
     """);
+
+    database.execute("""
+      CREATE TABLE remedios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome VARCHAR(50),
+        data DATETIME,
+        petId INTEGER,
+        FOREIGN KEY (petId) REFERENCES pets (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+      )
+    """);
   }
 
   static Future<void> insertData(Map<String, Object?> data) async {
