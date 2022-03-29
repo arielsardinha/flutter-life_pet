@@ -32,7 +32,9 @@ class PetService {
     await DbUtil.insertData('pets', pet.toMap());
   }
 
-  Pet getFindPet(int petId) {
-    return _listaPet.singleWhere((pet) => pet.id == petId);
+  Future<Pet> getFindPet(int petId) async {
+    final dataList = await DbUtil.getDataId(table: 'pets', whereArgs: [petId]);
+    print(dataList.first);
+    return Pet.fromMap(dataList.first);
   }
 }

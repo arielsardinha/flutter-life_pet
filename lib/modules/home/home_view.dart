@@ -19,8 +19,8 @@ class HomeView extends StatelessWidget {
                 itemCount: pets.length,
                 itemBuilder: (ctx, index) {
                   return GestureDetector(
-                    onTap: () =>
-                        controller.acessPerfil(index: index, context: context),
+                    onTap: () => controller.acessPerfil(
+                        index: index, context: context, petId: pets[index].id!),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 30),
                       child: Column(

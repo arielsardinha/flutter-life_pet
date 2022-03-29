@@ -10,7 +10,7 @@ class RemedioController {
   final PetService _petService = PetService();
   final RemedioService _remedioService = RemedioService();
   RemedioController({required int petId}) {
-    pet = _petService.getFindPet(petId);
+    // pet = _petService.getFindPet(petId);
 
     listaRemedio = _remedioService.getAllRemedios(petId);
   }

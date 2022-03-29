@@ -5,11 +5,11 @@ import 'package:life_pet/services/pet_service.dart';
 class HomeController {
   final petService = PetService();
 
-  var pets = <Pet>[];
-
   Future<void> acessPerfil(
-      {required int index, required BuildContext context}) async {
-    Navigator.of(context).pushNamed('/perfilPet', arguments: pets[index].id);
+      {required int index,
+      required BuildContext context,
+      required int petId}) async {
+    Navigator.of(context).pushNamed('/perfilPet', arguments: petId);
   }
 
   Future<void> acessFormPet({required BuildContext context}) async {

@@ -107,9 +107,9 @@ class CadastroPetController with FormatImageMixin {
         .pushReplacementNamed('/perfilPet', arguments: pet!.id);
   }
 
-  void getFindPet(int? petId) {
+  Future<void> getFindPet(int? petId) async {
     if (petId != null) {
-      pet = _petService.getFindPet(petId);
+      pet = await _petService.getFindPet(petId);
 
       nomeController.text = pet!.nome;
       descricaoController.text = pet!.descricao;

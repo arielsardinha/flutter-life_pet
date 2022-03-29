@@ -30,7 +30,7 @@ class Main extends StatelessWidget {
       },
       routes: {
         '/home': (context) => HomeView(),
-        "/perfilPet": (context) => const PerfilPetView(),
+        "/perfilPet": (context) => PerfilPetView(),
         "/remedio": (context) => RemedioView(),
         "/cadastroRemedio": (context) => const CadastroRemedioView(),
         '/login': (context) => const LoginView(),

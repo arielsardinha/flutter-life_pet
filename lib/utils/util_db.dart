@@ -41,4 +41,27 @@ class DbUtil {
     final db = await database();
     return db.query(table);
   }
+
+  // SELECT * FROM pets WHERE id=1
+  static Future<List<Map<String, dynamic>>> getDataId(
+      {required String table, required List<Object?> whereArgs}) async {
+    const colunas = [
+      'id',
+      'nome',
+      'idade',
+      'imageUrl',
+      'descricao',
+      'sexo',
+      'cor',
+      'bio',
+      'peso'
+    ];
+
+    final db = await database();
+
+    final response = db.query(table,
+        columns: colunas, where: 'id = ?', whereArgs: whereArgs);
+
+    return response;
+  }
 }
