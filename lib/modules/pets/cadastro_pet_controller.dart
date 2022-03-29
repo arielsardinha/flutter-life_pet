@@ -12,6 +12,7 @@ class CadastroPetController with FormatImageMixin {
   final _petService = PetService();
   final ImagePicker _imagePicker = ImagePicker();
   var notifyValueImage = ValueNotifier('');
+  var loading = ValueNotifier(false);
   Uint8List image = Uint8List(0);
 
   final listaCor = const [
@@ -72,6 +73,7 @@ class CadastroPetController with FormatImageMixin {
   }
 
   Future<void> petAdd(BuildContext context) async {
+    loading.value = true;
     await _petService.addNewPet(
       Pet(
         nome: nomeController.text,
@@ -84,12 +86,13 @@ class CadastroPetController with FormatImageMixin {
         peso: double.parse(pesoController.text),
       ),
     );
-
+    loading.value = false;
     Navigator.of(context).pushReplacementNamed('/home');
   }
 
-  void editPet(BuildContext context) {
-    _petService.editPet(
+  Future<void> editPet(BuildContext context) async {
+    loading.value = true;
+    await _petService.editPet(
       Pet(
         nome: nomeController.text,
         descricao: descricaoController.text,
@@ -102,6 +105,7 @@ class CadastroPetController with FormatImageMixin {
         id: pet!.id,
       ),
     );
+    loading.value = false;
     Navigator.of(context).pop();
     Navigator.of(context)
         .pushReplacementNamed('/perfilPet', arguments: pet!.id);

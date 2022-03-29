@@ -14,27 +14,21 @@ class PetService {
   PetService._internal();
 
   Future<List<Pet>> getAllPets() async {
-    final json = await DbUtil.getData('pets');
+    final json = await DbUtil.getData();
 
     return json.map((map) => Pet.fromMap(map)).toList();
   }
 
-  void editPet(Pet newPet) {
-    _listaPet = _listaPet.map((pet) {
-      if (newPet.id == pet.id) {
-        return newPet;
-      }
-      return pet;
-    }).toList();
+  Future<void> editPet(Pet newPet) async {
+    await DbUtil.editData(data: newPet.toMap(), whereArgs: [newPet.id]);
   }
 
   Future<void> addNewPet(Pet pet) async {
-    await DbUtil.insertData('pets', pet.toMap());
+    await DbUtil.insertData(pet.toMap());
   }
 
   Future<Pet> getFindPet(int petId) async {
-    final dataList = await DbUtil.getDataId(table: 'pets', whereArgs: [petId]);
-    print(dataList.first);
+    final dataList = await DbUtil.getDataId(whereArgs: [petId]);
     return Pet.fromMap(dataList.first);
   }
 }

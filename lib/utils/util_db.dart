@@ -30,21 +30,20 @@ class DbUtil {
     """);
   }
 
-  static Future<void> insertData(
-      String table, Map<String, Object?> data) async {
+  static Future<void> insertData(Map<String, Object?> data) async {
     final db = await database();
 
-    await db.insert(table, data, conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert('pets', data, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static Future<List<Map<String, dynamic>>> getData(String table) async {
+  static Future<List<Map<String, dynamic>>> getData() async {
     final db = await database();
-    return db.query(table);
+    return db.query('pets');
   }
 
   // SELECT * FROM pets WHERE id=1
   static Future<List<Map<String, dynamic>>> getDataId(
-      {required String table, required List<Object?> whereArgs}) async {
+      {required List<Object?> whereArgs}) async {
     const colunas = [
       'id',
       'nome',
@@ -59,9 +58,18 @@ class DbUtil {
 
     final db = await database();
 
-    final response = db.query(table,
+    final response = db.query('pets',
         columns: colunas, where: 'id = ?', whereArgs: whereArgs);
 
     return response;
+  }
+
+  static Future<void> editData({
+    required Map<String, Object?> data,
+    required List<Object?> whereArgs,
+  }) async {
+    final db = await database();
+
+    await db.update('pets', data, where: 'id = ?', whereArgs: whereArgs);
   }
 }
