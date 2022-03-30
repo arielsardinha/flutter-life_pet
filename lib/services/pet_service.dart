@@ -28,7 +28,20 @@ class PetService {
   }
 
   Future<Pet> getFindPet(int petId) async {
-    final dataList = await DbUtil.getDataId(whereArgs: [petId]);
+    const colunas = [
+      'id',
+      'nome',
+      'idade',
+      'imageUrl',
+      'descricao',
+      'sexo',
+      'cor',
+      'bio',
+      'peso'
+    ];
+
+    final dataList = await DbUtil.getDataId('pets',
+        whereArgs: [petId], colunas: colunas, where: 'id = ?');
     return Pet.fromMap(dataList.first);
   }
 }

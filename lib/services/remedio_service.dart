@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:life_pet/models/remedio_model.dart';
+import 'package:life_pet/utils/util_db.dart';
 
 class RemedioService {
   var _remedios = <Remedio>[];
@@ -23,7 +24,12 @@ class RemedioService {
     );
   }
 
-  List<Remedio> getAllRemedios(int petId) {
-    return _remedios.where((remedio) => remedio.petId == petId).toList();
+  Future<List<Remedio>> getAllRemedios(int petId) async {
+    const colunas = ['id', 'nome', 'data', 'petId'];
+
+    final dataList = await DbUtil.getDataId('remedios',
+        whereArgs: [petId], where: 'petId = ?', colunas: colunas);
+
+    return dataList.map((map) => Remedio.fromMap(map)).toList();
   }
 }
