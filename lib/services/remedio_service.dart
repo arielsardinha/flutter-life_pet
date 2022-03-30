@@ -13,15 +13,8 @@ class RemedioService {
 
   RemedioService._internal();
 
-  void addNewRemedio(Remedio remedio) {
-    _remedios.add(
-      Remedio(
-        nome: remedio.nome,
-        data: remedio.data,
-        petId: remedio.petId,
-        id: Random().nextInt(1000),
-      ),
-    );
+  Future<void> addNewRemedio(Remedio remedio) async {
+    await DbUtil.insertData('remedios', data: remedio.toMap());
   }
 
   Future<List<Remedio>> getAllRemedios(int petId) async {

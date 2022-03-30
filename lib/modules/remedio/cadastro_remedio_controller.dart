@@ -5,6 +5,8 @@ import 'package:life_pet/services/remedio_service.dart';
 class CadastroRemedioController {
   final nomeController = TextEditingController();
   var dataController = TextEditingController();
+  var loading = ValueNotifier(false);
+
   var dataSelecionada = DateTime.now();
   final RemedioService _remedioService = RemedioService();
 
@@ -16,10 +18,14 @@ class CadastroRemedioController {
     }
   }
 
-  void addNewRemedio({required int petId, required BuildContext context}) {
-    _remedioService.addNewRemedio(
+  Future<void> addNewRemedio(
+      {required int petId, required BuildContext context}) async {
+    loading.value = true;
+    await _remedioService.addNewRemedio(
       Remedio(nome: nomeController.text, data: dataSelecionada, petId: petId),
     );
+    loading.value = false;
+
     Navigator.of(context).pop();
     Navigator.of(context).pushReplacementNamed('/remedio', arguments: petId);
   }

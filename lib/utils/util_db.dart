@@ -33,17 +33,18 @@ class DbUtil {
       CREATE TABLE remedios (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome VARCHAR(50),
-        data DATETIME,
+        data INTEGER,
         petId INTEGER,
         FOREIGN KEY (petId) REFERENCES pets (id) ON DELETE NO ACTION ON UPDATE NO ACTION
       )
     """);
   }
 
-  static Future<void> insertData(Map<String, Object?> data) async {
+  static Future<void> insertData(String tabela,
+      {required Map<String, Object?> data}) async {
     final db = await database();
 
-    await db.insert('pets', data, conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(tabela, data, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   static Future<List<Map<String, dynamic>>> getData() async {

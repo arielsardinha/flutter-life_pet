@@ -15,6 +15,14 @@ class _CadastroRemedioViewState extends State<CadastroRemedioView>
   final controller = CadastroRemedioController();
 
   @override
+  void initState() {
+    controller.loading.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final petId = ModalRoute.of(context)!.settings.arguments as int;
 
@@ -69,9 +77,13 @@ class _CadastroRemedioViewState extends State<CadastroRemedioView>
                             petId: petId, context: context);
                       }
                     },
-                    child: const Text(
-                      'Cadastrar',
-                      style: TextStyle(color: Colors.white),
+                    child: Visibility(
+                      visible: !controller.loading.value,
+                      child: const Text(
+                        'Cadastrar',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      replacement: const CircularProgressIndicator(),
                     ),
                     style: ButtonStyle(
                       backgroundColor:

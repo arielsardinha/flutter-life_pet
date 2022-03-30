@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:life_pet/models/pet_model.dart';
 
 class CustonAppBar extends StatefulWidget {
   CustonAppBar({Key? key, required this.petId, required this.paginaAberta})
@@ -28,8 +27,8 @@ class _CustonAppBarState extends State<CustonAppBar> {
               children: [
                 MaterialButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .popAndPushNamed('/perfilPet', arguments: widget.petId);
+                    Navigator.of(context).pushReplacementNamed('/perfilPet',
+                        arguments: widget.petId);
                   },
                   minWidth: 40,
                   child: Column(
@@ -54,8 +53,8 @@ class _CustonAppBarState extends State<CustonAppBar> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .popAndPushNamed('/remedio', arguments: widget.petId);
+                    Navigator.of(context).pushReplacementNamed('/remedio',
+                        arguments: widget.petId);
                   },
                   minWidth: 40,
                   child: Column(

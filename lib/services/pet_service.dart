@@ -24,7 +24,7 @@ class PetService {
   }
 
   Future<void> addNewPet(Pet pet) async {
-    await DbUtil.insertData(pet.toMap());
+    await DbUtil.insertData('pets',data: pet.toMap());
   }
 
   Future<Pet> getFindPet(int petId) async {

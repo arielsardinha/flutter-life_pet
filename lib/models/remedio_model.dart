@@ -10,9 +10,18 @@ class Remedio {
   factory Remedio.fromMap(Map json) {
     return Remedio(
       nome: json['nome'],
-      data: json['data'],
+      data: DateTime.fromMillisecondsSinceEpoch((json['data'] as int)),
       petId: json['petId'],
       id: json['id'],
     );
+  }
+
+  Map<String, Object?> toMap() {
+    return {
+      'nome': nome,
+      'data': data.millisecondsSinceEpoch,
+      'petId': petId,
+      'id': id,
+    };
   }
 }

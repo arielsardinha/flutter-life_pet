@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:life_pet/components/costom_app_bar.dart';
 import 'package:life_pet/mixins/format_date.dart';
 import 'package:life_pet/models/pet_model.dart';
+import 'package:life_pet/models/remedio_model.dart';
 import 'package:life_pet/modules/remedio/perfil/remedio_controller.dart';
 
 class RemedioView extends StatelessWidget with FormatDateMixin {
@@ -12,11 +13,15 @@ class RemedioView extends StatelessWidget with FormatDateMixin {
   Widget build(BuildContext context) {
     final petId = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
-      body: FutureBuilder<Pet>(
-          future: controller.petService.getFindPet(petId),
+      body: FutureBuilder<List>(
+          future: Future.wait([
+            controller.petService.getFindPet(petId),
+            controller.remedioService.getAllRemedios(petId),
+          ]),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final pet = snapshot.data!;
+              final pet = snapshot.data![0] as Pet;
+              final listaRemedios = snapshot.data![1] as List<Remedio>;
               return Column(
                 children: [
                   Stack(
@@ -61,18 +66,23 @@ class RemedioView extends StatelessWidget with FormatDateMixin {
                       ],
                     ),
                   ),
-                  // Expanded(
-                  //   child: ListView.builder(
-                  //     itemCount: controller.listaRemedio.length,
-                  //     itemBuilder: (ctx, i) {
-                  //       final remedio = controller.listaRemedio[i];
-                  //       return cardRemedio(
-                  //         titulo: remedio.nome,
-                  //         descricao: convertDateToString(remedio.data),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
+                  Visibility(
+                    visible: listaRemedios.isNotEmpty,
+                    child: Expanded(
+                      child: ListView.builder(
+                        itemCount: listaRemedios.length,
+                        itemBuilder: (ctx, i) {
+                          final remedio = listaRemedios[i];
+                          return cardRemedio(
+                            titulo: remedio.nome,
+                            descricao: convertDateToString(remedio.data),
+                          );
+                        },
+                      ),
+                    ),
+                    replacement: cardRemedio(
+                        titulo: 'Não tem nenhum remedio', descricao: ''),
+                  ),
                 ],
               );
             } else {
